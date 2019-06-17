@@ -7,13 +7,30 @@ body {
   width: 100vw;
   margin: 0;
 }
-
-button {
-  background: url("./pineapple.svg");
+.spin-me-btn {
+  background: url("../assets/images/pineapple.svg");
   outline: none;
   width: 318px;
   height: 437px;
   border: none;
   transition: transform 1s;
   transform: scale(0.9);
+}
+.change-color-btn {
+  background: url("../assets/images/banana.svg");
+  width: 500px;
+  height: 500px;
+  transition: filter 1s;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+button:active {
+  outline: none;
+}
+
+h1 {
+  font-family: "Lobster Two", cursive;
 }
