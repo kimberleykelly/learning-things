@@ -1,5 +1,6 @@
 import "./style.scss";
 import Fruit from "../src/fruit";
+import Counter from "./counter";
 import React from "react";
 import RandomOne from "../assets/sounds/random-one.wav";
 import RandomTwo from "../assets/sounds/random-two.wav";
@@ -12,6 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app-layout">
+        <Counter />
         <Fruit
           text="Fun Fact: When you eat me, I eat you"
           className="spin-me-btn"
