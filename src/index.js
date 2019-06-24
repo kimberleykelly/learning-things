@@ -1,7 +1,5 @@
-import "./style.scss";
-import { addEventHandler } from "./pineapple/add-event-handler";
-import "./banana";
-import "./test";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./app";
 
-const button = document.querySelector(".spin-me-btn");
-addEventHandler(button);
+ReactDOM.render(<App />, document.getElementById("root"));
