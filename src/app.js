@@ -10,12 +10,39 @@ import RandomFive from "../assets/sounds/random-five.wav";
 import RandomSix from "../assets/sounds/random-six.wav";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 20
+    };
+  }
+
+  handleBananaClick() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
+  handleIncrement() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
+  handleDecrement() {
+    this.setState({
+      count: this.state.count - 1
+    });
+  }
+
   render() {
     return (
       <div className="app-layout">
-        <div className="counter-container">
-          <Counter />
-        </div>
+        <Counter
+          count={this.state.count}
+          onIncrement={() => this.handleIncrement()}
+          onDecrement={() => this.handleDecrement()}
+        />
         <div className="fruit-container">
           <Fruit
             text="Fun Fact: When you eat me, I eat you"
@@ -33,6 +60,7 @@ class App extends React.Component {
             rotationType={"rotate"}
           />
           <Fruit
+            onClick={() => this.handleBananaClick()}
             text="Fun Fact: A man in India once ate 81 bananas in half an hour"
             className="change-color-btn"
             rotationStart={0}
@@ -54,3 +82,18 @@ class App extends React.Component {
 }
 
 export default App;
+
+// NEEDS
+// The count (in the header)
+// A banana button that spins
+// a + button
+// a - button
+
+// WE HAVE
+// A banana button in one component (child of app)
+// A + and - button in another component (child of app)
+// A count variable in the counter component (same one as above ^)
+
+//WE NEED
+// The counter component and the fruit component to share info.
+// It is not immediately obvious to me what information I need to share!!!!!!

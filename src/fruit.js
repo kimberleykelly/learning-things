@@ -10,10 +10,11 @@ class Fruit extends React.Component {
     };
   }
 
-  handleSpinClick() {
-    const { rotationStep } = this.props;
+  handleClick() {
+    const { rotationStep, onClick } = this.props;
     this.playSound();
     this.setState({ rotation: this.state.rotation + rotationStep });
+    onClick();
   }
 
   playSound() {
@@ -35,7 +36,7 @@ class Fruit extends React.Component {
     return (
       <div>
         <button
-          onClick={() => this.handleSpinClick()}
+          onClick={() => this.handleClick()}
           style={{
             [stylingProperty]: `${rotationType}(${this.state.rotation}deg)`
           }}
