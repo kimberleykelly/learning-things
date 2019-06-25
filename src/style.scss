@@ -1,18 +1,31 @@
+$counter-font-size: 30px;
+$counter-palette: green;
+$app-font: "Lobster Two", cursive;
+$button-height: 440px;
+
 body {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
   margin: 0;
 }
-
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: space-between;
+}
+.counter-container {
+  margin: 30px;
+}
+.fruit-container {
+  margin: 70px;
+  display: flex;
+  justify-content: inherit;
+  width: 70vw;
+}
 .spin-me-btn {
   background: url("../assets/images/pineapple.svg");
   outline: none;
   width: 318px;
-  height: 437px;
+  height: $button-height;
   border: none;
   transition: transform 1s;
   transform: scale(0.9);
@@ -20,7 +33,7 @@ body {
 .change-color-btn {
   background: url("../assets/images/banana.svg");
   width: 460px;
-  height: 460px;
+  height: $button-height;
   transition: filter 1s;
 }
 
@@ -33,13 +46,13 @@ button:active {
 }
 
 h1 {
-  font-family: "Lobster Two", cursive;
+  font-family: $app-font;
 }
 
 .counter {
-  font-family: "Lobster Two", cursive;
-  font-size: 30px;
-  color: green;
+  font-family: $app-font;
+  font-size: $counter-font-size;
+  color: $counter-palette;
 }
 .counter-btns {
   margin: 10px;
@@ -47,9 +60,9 @@ h1 {
 .counter-btns-minus,
 .counter-btns-plus {
   color: white;
-  background-color: green;
+  background-color: $counter-palette;
   border-right: 5px white solid;
   width: 100px;
   height: 50px;
-  font-size: 30px;
+  font-size: $counter-font-size;
 }

@@ -13,37 +13,41 @@ class App extends React.Component {
   render() {
     return (
       <div className="app-layout">
-        <Counter />
-        <Fruit
-          text="Fun Fact: When you eat me, I eat you"
-          className="spin-me-btn"
-          rotationStart={0}
-          rotationStep={50}
-          sounds={[
-            RandomOne,
-            RandomTwo,
-            RandomThree,
-            RandomFour,
-            RandomFive,
-            RandomSix
-          ]}
-          rotationType={"rotate"}
-        />
-        <Fruit
-          text="Fun Fact: A man in India once ate 81 bananas in half an hour"
-          className="change-color-btn"
-          rotationStart={0}
-          rotationStep={50}
-          sounds={[
-            RandomOne,
-            RandomTwo,
-            RandomThree,
-            RandomFour,
-            RandomFive,
-            RandomSix
-          ]}
-          rotationType={"hue-rotate"}
-        />
+        <div className="counter-container">
+          <Counter />
+        </div>
+        <div className="fruit-container">
+          <Fruit
+            text="Fun Fact: When you eat me, I eat you"
+            className="spin-me-btn"
+            rotationStart={0}
+            rotationStep={50}
+            sounds={[
+              RandomOne,
+              RandomTwo,
+              RandomThree,
+              RandomFour,
+              RandomFive,
+              RandomSix
+            ]}
+            rotationType={"rotate"}
+          />
+          <Fruit
+            text="Fun Fact: A man in India once ate 81 bananas in half an hour"
+            className="change-color-btn"
+            rotationStart={0}
+            rotationStep={50}
+            sounds={[
+              RandomOne,
+              RandomTwo,
+              RandomThree,
+              RandomFour,
+              RandomFive,
+              RandomSix
+            ]}
+            rotationType={"hue-rotate"}
+          />
+        </div>
       </div>
     );
   }
