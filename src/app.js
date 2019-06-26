@@ -13,25 +13,34 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 20
+      bananaCount: 0,
+      pineappleCount: 0
     };
   }
 
   handleBananaClick() {
     this.setState({
-      count: this.state.count + 1
+      bananaCount: this.state.bananaCount + 1
+    });
+  }
+
+  handlePineappleClick() {
+    this.setState({
+      pineappleCount: this.state.pineappleCount + 1
     });
   }
 
   handleIncrement() {
     this.setState({
-      count: this.state.count + 1
+      bananaCount: this.state.bananaCount + 1,
+      pineappleCount: this.state.pineappleCount + 1
     });
   }
 
   handleDecrement() {
     this.setState({
-      count: this.state.count - 1
+      bananaCount: this.state.bananaCount - 1,
+      pineappleCount: this.state.pineappleCount - 1
     });
   }
 
@@ -39,12 +48,14 @@ class App extends React.Component {
     return (
       <div className="app-layout">
         <Counter
-          count={this.state.count}
+          bananaCount={this.state.bananaCount}
+          pineappleCount={this.state.pineappleCount}
           onIncrement={() => this.handleIncrement()}
           onDecrement={() => this.handleDecrement()}
         />
         <div className="fruit-container">
           <Fruit
+            onClick={() => this.handlePineappleClick()}
             text="Fun Fact: When you eat me, I eat you"
             className="spin-me-btn"
             rotationStart={0}
