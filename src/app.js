@@ -93,18 +93,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// NEEDS
-// The count (in the header)
-// A banana button that spins
-// a + button
-// a - button
-
-// WE HAVE
-// A banana button in one component (child of app)
-// A + and - button in another component (child of app)
-// A count variable in the counter component (same one as above ^)
-
-//WE NEED
-// The counter component and the fruit component to share info.
-// It is not immediately obvious to me what information I need to share!!!!!!

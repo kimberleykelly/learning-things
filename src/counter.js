@@ -1,4 +1,5 @@
 import React from "react";
+import connectToFlux from "./connectToFlux";
 
 class Counter extends React.Component {
   render() {
@@ -20,9 +21,15 @@ class Counter extends React.Component {
             +
           </button>
         </div>
+        {this.props.age}
       </div>
     );
   }
 }
 
-export default Counter;
+const queries = {
+  age: "userStore.age"
+};
+const commands = {};
+
+export default connectToFlux(queries, commands)(Counter);

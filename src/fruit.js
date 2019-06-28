@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import FluxContext from "./flux-context";
 
 class Fruit extends React.Component {
   constructor(props) {
@@ -33,6 +34,9 @@ class Fruit extends React.Component {
     const { text, className, rotationType } = this.props;
     const stylingProperty = rotationType === "rotate" ? "transform" : "filter";
 
+    window.setTimeout(() => {
+      this.context.commandHandler.run("userStore.increase");
+    }, 5000);
     return (
       <div>
         <button
@@ -56,5 +60,7 @@ Fruit.propTypes = {
   text: PropTypes.string,
   className: PropTypes.string.isRequired
 };
+
+Fruit.contextType = FluxContext;
 
 export default Fruit;
