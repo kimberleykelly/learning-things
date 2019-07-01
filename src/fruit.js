@@ -1,21 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FluxContext from "./flux-context";
+import connectToFlux from "./connectToFlux";
 
 class Fruit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       rotation: props.rotationStart,
-      soundIndex: 0
+      soundIndex: 0,
+      bananaCount: 0,
+      pineappleCount: 0
     };
   }
 
+  handleBananaClick() {
+    this.setState({
+      bananaCount: this.state.bananaCount + 1
+    });
+  }
+
+  handlePineappleClick() {
+    this.setState({
+      pineappleCount: this.state.pineappleCount + 1
+    });
+  }
+
   handleClick() {
-    const { rotationStep, onClick } = this.props;
+    const { rotationStep, fruitType } = this.props;
     this.playSound();
     this.setState({ rotation: this.state.rotation + rotationStep });
-    onClick();
+    this.props.onFruitClick(fruitType);
   }
 
   playSound() {
@@ -34,9 +49,6 @@ class Fruit extends React.Component {
     const { text, className, rotationType } = this.props;
     const stylingProperty = rotationType === "rotate" ? "transform" : "filter";
 
-    window.setTimeout(() => {
-      this.context.commandHandler.run("userStore.increase");
-    }, 5000);
     return (
       <div>
         <button
@@ -63,4 +75,12 @@ Fruit.propTypes = {
 
 Fruit.contextType = FluxContext;
 
-export default Fruit;
+const queries = {
+  clicks: "userStore.clicks"
+};
+
+const commands = {
+  onFruitClick: "userStore.fruitClicked"
+};
+
+export default connectToFlux(queries, commands)(Fruit);

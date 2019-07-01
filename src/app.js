@@ -8,54 +8,20 @@ import RandomThree from "../assets/sounds/random-three.wav";
 import RandomFour from "../assets/sounds/random-four.wav";
 import RandomFive from "../assets/sounds/random-five.wav";
 import RandomSix from "../assets/sounds/random-six.wav";
-
+import connectToFlux from "./connectToFlux";
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bananaCount: 0,
-      pineappleCount: 0
-    };
-  }
-
-  handleBananaClick() {
-    this.setState({
-      bananaCount: this.state.bananaCount + 1
-    });
-  }
-
-  handlePineappleClick() {
-    this.setState({
-      pineappleCount: this.state.pineappleCount + 1
-    });
-  }
-
-  handleIncrement() {
-    this.setState({
-      bananaCount: this.state.bananaCount + 1,
-      pineappleCount: this.state.pineappleCount + 1
-    });
-  }
-
-  handleDecrement() {
-    this.setState({
-      bananaCount: this.state.bananaCount - 1,
-      pineappleCount: this.state.pineappleCount - 1
-    });
-  }
-
   render() {
     return (
       <div className="app-layout">
         <Counter
-          bananaCount={this.state.bananaCount}
-          pineappleCount={this.state.pineappleCount}
-          onIncrement={() => this.handleIncrement()}
-          onDecrement={() => this.handleDecrement()}
+          bananaCount={this.props.bananaClicks}
+          pineappleCount={this.props.pineappleClicks}
+          onIncrement={() => this.props.onIncrement()}
+          onDecrement={() => this.props.onDecrement()}
         />
         <div className="fruit-container">
           <Fruit
-            onClick={() => this.handlePineappleClick()}
+            fruitType="pineapple"
             text="Fun Fact: When you eat me, I eat you"
             className="spin-me-btn"
             rotationStart={0}
@@ -71,7 +37,7 @@ class App extends React.Component {
             rotationType={"rotate"}
           />
           <Fruit
-            onClick={() => this.handleBananaClick()}
+            fruitType="banana"
             text="Fun Fact: A man in India once ate 81 bananas in half an hour"
             className="change-color-btn"
             rotationStart={0}
@@ -92,4 +58,13 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const queries = {
+  pineappleClicks: "userStore.pineappleClicks",
+  bananaClicks: "userStore.bananaClicks"
+};
+const commands = {
+  onIncrement: "userStore.increment",
+  onDecrement: "userStore.decrement"
+};
+
+export default connectToFlux(queries, commands)(App);

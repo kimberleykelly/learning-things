@@ -6,12 +6,18 @@ import Dispatcher from "geo_me-flux/lib/dispatcher";
 import QueryHandler from "geo_me-flux/lib/queryHandler";
 import CommandHandler from "geo_me-flux/lib/commandHandler";
 import FluxContext from "./flux-context";
-import Command from "./ageIncreaseCommand";
+import FruitClickCommand from "./fruitClickCommand";
+import IncrementCountCommand from "./incrementCountCommand";
+import DecrementCountCommand from "./decrementCountCommand";
 
 const dispatcher = new Dispatcher();
 const queryHandler = new QueryHandler({ dispatcher });
 const commandHandler = new CommandHandler();
-const actionTypes = { USER_STORE_AGE_INCREASED: "USER_STORE_AGE_INCREASED" };
+const actionTypes = {
+  FRUIT_CLICKED: "FRUIT_CLICKED",
+  FRUIT_INCREMENTED: "FRUIT_INCREMENTED",
+  FRUIT_DECREMENTED: "FRUIT_DECREMENTED"
+};
 const store = new Store({
   dispatcher,
   actionTypes,
@@ -20,7 +26,19 @@ const store = new Store({
   debug: true
 });
 
-const command = new Command({
+const fruitClickCommand = new FruitClickCommand({
+  dispatcher,
+  actionTypes,
+  queryHandler
+});
+
+const incrementCountCommand = new IncrementCountCommand({
+  dispatcher,
+  actionTypes,
+  queryHandler
+});
+
+const decrementCountCommand = new DecrementCountCommand({
   dispatcher,
   actionTypes,
   queryHandler
@@ -28,7 +46,9 @@ const command = new Command({
 
 store.register();
 queryHandler.register("userStore", store);
-commandHandler.register("userStore.increase", command);
+commandHandler.register("userStore.fruitClicked", fruitClickCommand);
+commandHandler.register("userStore.increment", incrementCountCommand);
+commandHandler.register("userStore.decrement", decrementCountCommand);
 
 const fluxContext = {
   queryHandler: queryHandler,

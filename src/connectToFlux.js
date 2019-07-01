@@ -5,6 +5,7 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.commandsCache = {};
   }
 
   componentDidMount() {
@@ -30,12 +31,21 @@ class Container extends React.Component {
     return this.context.queryHandler.get(path);
   }
 
+  run(command, params = null) {
+    return this.context.commandHandler.run(command, params);
+  }
+
   getStateFromQueries() {
     return Object.entries(this.props.queries).reduce(
       (state, [key, value]) => ({ ...state, [key]: this.get(value) }),
       {}
     );
   }
+
+  addCommandToCache(functionName, boundCommand) {
+    this.commandsCache[functionName] = boundCommand;
+  }
+
   getBoundCommand(functionName, commandName) {
     const cachedCommand = this.commandsCache[functionName];
     if (cachedCommand) return cachedCommand;

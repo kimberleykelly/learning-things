@@ -21,15 +21,12 @@ class Counter extends React.Component {
             +
           </button>
         </div>
-        {this.props.age}
       </div>
     );
   }
 }
 
-const queries = {
-  age: "userStore.age"
-};
+const queries = {};
 const commands = {};
 
 export default connectToFlux(queries, commands)(Counter);
