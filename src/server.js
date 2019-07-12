@@ -2,9 +2,10 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-let bananaClicks = 100;
-let pineappleClicks = 200;
+let bananaClicks = 20;
+let pineappleClicks = 10;
 
+app.use(express.static("."));
 app.use(express.json());
 
 app.get("/api/fruit/clicks", (req, res) => {

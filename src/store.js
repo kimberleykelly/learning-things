@@ -15,6 +15,10 @@ class Store extends BaseStore {
         const fruit = payload.fruitType + "Clicks";
         const clickCount = this.get(fruit);
         this.set(fruit, clickCount + 1);
+      },
+      LOADED_CLICK_COUNTS({ payload }) {
+        this.set("bananaClicks", payload.bananaClicks);
+        this.set("pineappleClicks", payload.pineappleClicks);
       }
     };
   }

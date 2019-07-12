@@ -10,9 +10,23 @@ import RandomFive from "../assets/sounds/random-five.wav";
 import RandomSix from "../assets/sounds/random-six.wav";
 import connectToFlux from "./connectToFlux";
 class App extends React.Component {
+  componentDidMount() {
+    this.props.requestClickCounts();
+  }
   render() {
     return (
       <div className="app-layout">
+        <button
+          className="update-server-btn"
+          onClick={() =>
+            this.props.updateServerCommand({
+              bananaClicks: this.props.bananaClicks,
+              pineappleClicks: this.props.pineappleClicks
+            })
+          }
+        >
+          Update Server
+        </button>
         <Counter
           bananaCount={this.props.bananaClicks}
           pineappleCount={this.props.pineappleClicks}
@@ -64,7 +78,9 @@ const queries = {
 };
 const commands = {
   onIncrement: "userStore.increment",
-  onDecrement: "userStore.decrement"
+  onDecrement: "userStore.decrement",
+  requestClickCounts: "userStore.requestClickCounts",
+  updateServerCommand: "userStore.updateServerCommand"
 };
 
 export default connectToFlux(queries, commands)(App);
